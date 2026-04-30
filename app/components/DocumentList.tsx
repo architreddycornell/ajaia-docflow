@@ -26,6 +26,8 @@ export function DocumentList({
         {documents.length === 0 ? (
           <p className="rounded-lg border border-dashed p-3 text-sm text-gray-400">
             No documents yet.
+            <br />
+            Create one or import a file to begin.
           </p>
         ) : (
           documents.map((doc) => (

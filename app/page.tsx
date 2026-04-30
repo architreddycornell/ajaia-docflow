@@ -94,6 +94,11 @@ export default function Home() {
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-medium text-white"
             >
               <Plus size={16} />
+              <div className="rounded-xl bg-gray-50 p-3 text-xs text-gray-600">
+              <strong>Demo tip:</strong>
+              <br />
+                Switch users in the top-right corner to test sharing behavior.
+              </div>
               New Document
             </button>
 
