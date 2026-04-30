@@ -44,14 +44,19 @@ export async function POST(req: NextRequest, { params }: Params) {
   }
 
   const { data, error } = await supabase
-    .from("document_shares")
-    .upsert({
+  .from("document_shares")
+  .upsert(
+    {
       document_id: id,
       shared_with_user_id: sharedWithUserId,
       permission: body.permission === "view" ? "view" : "edit",
-    })
-    .select("*")
-    .single();
+    },
+    {
+      onConflict: "document_id,shared_with_user_id",
+    }
+  )
+  .select("*")
+  .single();
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

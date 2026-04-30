@@ -10,8 +10,6 @@
 
 The assignment asked for a lightweight collaborative document editor inspired by Google Docs. I scoped the product around the smallest coherent document workflow: create, edit, save, reopen, import, and share.
 
-The goal was not to recreate Google Docs, but to demonstrate practical product judgment, full-stack execution, persistence, and access logic under a time constraint.
-
 ## Architecture Overview
 
 DocFlow uses a Next.js application with API routes, a TipTap rich-text editor on the frontend, and Supabase for persistent storage.
@@ -82,7 +80,7 @@ I intentionally did not implement `.docx` parsing because reliable document pars
 
 Supabase was chosen because it provides hosted persistence, simple SQL tables, and a smooth deployment path. This avoids local-only storage and lets reviewers test the live deployed version without needing to run a database locally.
 
-For the assessment demo, Supabase Row Level Security is disabled because access is enforced through application-level mock-user logic. In a production version, I would move this to Supabase Auth-backed RLS policies.
+For the assessment demo, Supabase Row Level Security is disabled because access is enforced through application-level mock-user logic. 
 
 ## UX Priorities
 
@@ -115,9 +113,5 @@ These features are valuable, but each would require meaningful complexity. The s
 ## What I Would Build Next
 
 With another 2-4 hours, I would add:
-
-1. Debounced auto-save
-2. Read-only vs edit permissions
-3. Document delete/archive
-4. Basic version history
-5. Export to Markdown or PDF
+- Commenting
+- Exporting docs in different formats
