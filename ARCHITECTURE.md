@@ -82,6 +82,8 @@ I intentionally did not implement `.docx` parsing because reliable document pars
 
 Supabase was chosen because it provides hosted persistence, simple SQL tables, and a smooth deployment path. This avoids local-only storage and lets reviewers test the live deployed version without needing to run a database locally.
 
+For the assessment demo, Supabase Row Level Security is disabled because access is enforced through application-level mock-user logic. In a production version, I would move this to Supabase Auth-backed RLS policies.
+
 ## UX Priorities
 
 I prioritized:
