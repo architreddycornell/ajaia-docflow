@@ -40,8 +40,8 @@ export function FileImport({ ownerId, onImported }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-dashed p-4">
-      <label className="flex cursor-pointer flex-col items-center gap-2 text-center">
+    <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 transition hover:bg-slate-100">
+      <label className="flex cursor-pointer flex-col items-center gap-3 text-center">
         <Upload size={20} />
         <div className="flex flex-col gap-1">
             <span className="text-sm font-medium">

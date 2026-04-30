@@ -2,11 +2,12 @@
 
 ## Live Product URL
 
-[Add Vercel URL here]
+https://ajaia-docflow.vercel.app/
+
 
 ## Walkthrough Video
 
-[Add Loom or YouTube URL here]
+
 
 ## Included Materials
 

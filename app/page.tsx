@@ -67,7 +67,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 p-6">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 p-6">
       <div className="mx-auto max-w-7xl">
         <header className="mb-6 flex items-center justify-between rounded-2xl border bg-white px-6 py-4 shadow-sm">
           <div>
@@ -88,13 +88,13 @@ export default function Home() {
 </header>
 
         <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-          <aside className="space-y-4 rounded-2xl border bg-white p-4 shadow-sm">
+          <aside className="space-y-4 rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur">
             <button
               onClick={createDocument}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-medium text-white"
             >
               <Plus size={16} />
-              <div className="rounded-xl bg-gray-50 p-3 text-xs text-gray-600">
+              <div className="flex w-full items-center justify-center gap-2 rounded-2xl bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800">
               <br />
               </div>
               New Document

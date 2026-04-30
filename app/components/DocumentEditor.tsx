@@ -48,7 +48,7 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm max-w-none min-h-[420px] rounded-xl border bg-white p-6 focus:outline-none",
+            "prose prose-sm max-w-none min-h-[460px] rounded-2xl border border-slate-200 bg-white p-8 shadow-inner focus:outline-none",
       },
     },
   });
