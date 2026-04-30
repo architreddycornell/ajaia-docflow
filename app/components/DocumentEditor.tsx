@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -24,6 +24,7 @@ type Props = {
 };
 
 export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
+  const saveTimeout = useRef<NodeJS.Timeout | null>(null);
   const [title, setTitle] = useState(document?.title ?? "");
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">(
     "idle"
@@ -59,6 +60,49 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
       editor.commands.setContent(document.content_html || "");
     }
   }, [document?.id, editor]);
+
+  useEffect(() => {
+  if (!editor || !document) return;
+
+  const handler = () => {
+    if (saveTimeout.current) {
+      clearTimeout(saveTimeout.current);
+    }
+
+    setSaveState("saving");
+
+    saveTimeout.current = setTimeout(async () => {
+      const res = await fetch(`/api/documents/${document.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title.trim() || "Untitled Document",
+          content_html: editor.getHTML(),
+        }),
+      });
+
+      if (res.ok) {
+        const updated = await res.json();
+        setSaveState("saved");
+        onSaved(updated);
+
+        setTimeout(() => {
+          setSaveState("idle");
+        }, 1200);
+      } else {
+        setSaveState("idle");
+      }
+    }, 900);
+  };
+
+  editor.on("update", handler);
+
+  return () => {
+    editor.off("update", handler);
+  };
+}, [editor, document, title, onSaved]);
 
   async function saveDocument() {
     if (!document || !editor) return;
@@ -135,7 +179,7 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
               ? "Saving..."
               : saveState === "saved"
               ? "Saved"
-              : "Save"}
+              : "Saved automatically"}
           </button>
         </div>
 

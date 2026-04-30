@@ -69,25 +69,26 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 p-6">
       <div className="mx-auto max-w-7xl">
-        <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <header className="mb-6 flex items-center justify-between rounded-2xl border bg-white px-6 py-4 shadow-sm">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">DocFlow</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              DocFlow
+            </h1>
             <p className="text-sm text-gray-500">
-              Lightweight collaborative document editor for the Ajaia assessment.
+              Lightweight collaborative editor
             </p>
           </div>
-
-          <UserSwitcher
-            currentUserId={currentUserId}
-            onChange={(userId) => {
-              setCurrentUserId(userId);
-              setActiveDoc(null);
-            }}
-          />
-        </header>
+  <UserSwitcher
+    currentUserId={currentUserId}
+    onChange={(userId) => {
+      setCurrentUserId(userId);
+      setActiveDoc(null);
+    }}
+  />
+</header>
 
         <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-          <aside className="space-y-4">
+          <aside className="space-y-4 rounded-2xl border bg-white p-4 shadow-sm">
             <button
               onClick={createDocument}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-medium text-white"
