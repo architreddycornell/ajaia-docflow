@@ -48,7 +48,7 @@ export function FileImport({ ownerId, onImported }: Props) {
                 {loading ? "Importing..." : "Import .txt or .md"}
             </span>
             <span className="text-xs text-gray-500">
-                Creates a new editable document
+                  Creates a new editable document
             </span>
         </div>
         <input

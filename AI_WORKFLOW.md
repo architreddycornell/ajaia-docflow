@@ -15,7 +15,7 @@ I used AI assistance as a development copilot for:
 
 ## Where AI Materially Sped Up the Work
 
-AI was most useful in compressing early ambiguity into an implementation plan. The prompt had multiple possible directions: real-time collaboration, file handling, sharing, persistence, and editor UX. I used AI to compare scope options and converge on a practical vertical slice.
+AI was most useful in defining an implementation plan. The prompt had multiple possible directions: real-time collaboration, file handling, sharing, persistence, and editor UX. I used AI to compare scope options and converge on a practical solution.
 
 AI also sped up repetitive scaffolding, especially:
 
