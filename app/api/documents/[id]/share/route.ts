@@ -48,7 +48,7 @@ export async function POST(req: NextRequest, { params }: Params) {
     .upsert({
       document_id: id,
       shared_with_user_id: sharedWithUserId,
-      permission: "edit",
+      permission: body.permission === "view" ? "view" : "edit",
     })
     .select("*")
     .single();

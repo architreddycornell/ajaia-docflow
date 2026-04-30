@@ -39,7 +39,7 @@ Use the switcher in the top-right corner to test ownership and sharing behavior.
 This project does not implement:
 
 - Google authentication
-- Real-time multiplayer editing
+- Real-time multi-editing
 - CRDT or operational transform sync
 - Comments or suggestions
 - Enterprise-grade permissions

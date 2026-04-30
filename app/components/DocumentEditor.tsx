@@ -130,25 +130,33 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
     }
   }
 
-  async function shareWith(userId: string) {
-    if (!document) return;
+  async function shareWith(userId: string, permission: "view" | "edit") {
+  if (!document) return;
 
-    setShareMessage("");
+  setShareMessage("");
 
-    const res = await fetch(`/api/documents/${document.id}/share`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ownerId: currentUserId, sharedWithUserId: userId }),
-    });
+  const res = await fetch(`/api/documents/${document.id}/share`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ownerId: currentUserId,
+      sharedWithUserId: userId,
+      permission,
+    }),
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (!res.ok) {
-      setShareMessage(data.error || "Share failed");
-      return;
-    }
+  if (!res.ok) {
+    setShareMessage(data.error || "Share failed");
+    return;
+  }
 
-    setShareMessage("Shared successfully.");
+  setShareMessage(
+    permission === "view"
+      ? "Shared with view access."
+      : "Shared with edit access."
+  );
   }
 
   if (!document) {
@@ -234,15 +242,28 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {otherUsers.map((user) => (
-            <button
-              key={user.id}
-              onClick={() => shareWith(user.id)}
-              className="rounded-lg border px-3 py-2 text-sm hover:bg-gray-50"
+        {otherUsers.map((user) => (
+            <div
+                key={user.id}
+                className="flex flex-wrap items-center gap-2 rounded-xl border bg-gray-50 p-3"
             >
-              Share with {user.name}
-            </button>
-          ))}
+                <span className="text-sm font-medium">{user.name}</span>
+
+                <button
+                    onClick={() => shareWith(user.id, "view")}
+                    className="rounded-lg border bg-white px-3 py-2 text-sm hover:bg-gray-100"
+                >
+                    Grant view
+                </button>
+
+                <button
+                    onClick={() => shareWith(user.id, "edit")}
+                    className="rounded-lg bg-black px-3 py-2 text-sm text-white hover:bg-gray-800"
+                >
+                    Grant edit
+                </button>
+        </div>
+        ))}
         </div>
 
         {shareMessage && (
