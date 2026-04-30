@@ -95,9 +95,7 @@ export default function Home() {
             >
               <Plus size={16} />
               <div className="rounded-xl bg-gray-50 p-3 text-xs text-gray-600">
-              <strong>Demo tip:</strong>
               <br />
-                Switch users in the top-right corner to test sharing behavior.
               </div>
               New Document
             </button>
