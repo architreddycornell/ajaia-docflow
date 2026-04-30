@@ -45,7 +45,7 @@ export function FileImport({ ownerId, onImported }: Props) {
         <Upload size={20} />
         <div className="flex flex-col gap-1">
             <span className="text-sm font-medium">
-                {loading ? "Importing..." : "Import .txt or .md file.  "}
+                {loading ? "Importing..." : "Import .txt or .md file. \n "}
             </span>
             <span className="text-xs text-gray-500">
                   Creates a new editable document
