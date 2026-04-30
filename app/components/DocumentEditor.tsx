@@ -184,12 +184,12 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl border bg-white p-4">
+      <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="min-w-[260px] flex-1 rounded-lg border px-3 py-2 text-xl font-semibold"
+            className="min-w-[260px] flex-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xl font-semibold outline-none transition focus:border-black focus:bg-white"
             placeholder="Document title"
           />
 
@@ -213,7 +213,7 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
           </button>
         </div>
 
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2">
           <ToolbarButton
             active={editor?.isActive("bold")}
             onClick={() => editor?.chain().focus().toggleBold().run()}
