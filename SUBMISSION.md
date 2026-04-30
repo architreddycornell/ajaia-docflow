@@ -38,6 +38,7 @@ Use the top-right user switcher to test document ownership and sharing.
 - Create documents
 - Rename documents
 - Edit rich-text content
+- Bold italic, underline, headlines, bullets, numbered lists
 - Save and reopen documents
 - Import `.txt` and `.md` files
 - Share documents with another seeded user
@@ -45,21 +46,19 @@ Use the top-right user switcher to test document ownership and sharing.
 - Persist documents and shares in Supabase
 - Run automated access-logic test
 
-## Incomplete or Intentionally Deferred
+## Known Limitations
 
-- Real-time multiplayer editing
-- Full authentication
+- Real-time multi-user editing
+- View/Edit Permissions are stored but full view-only UI not implemented
 - `.docx` import
 - Comments and suggestions
 - Version history
-- Role-based permissions
 
 ## What I Would Build Next
 
 With another 2-4 hours, I would add:
 
-1. Debounced auto-save
+1. Enforce view-only in editor and API update route
 2. View-only vs edit access
-3. Document deletion/archive
-4. Version history
+3. Document Version history
 5. Export to Markdown or PDF
