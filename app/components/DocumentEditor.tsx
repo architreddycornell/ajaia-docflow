@@ -30,7 +30,6 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
     "idle"
   );
   const [shareMessage, setShareMessage] = useState("");
-
   const otherUsers = useMemo(
     () => DEMO_USERS.filter((u) => u.id !== currentUserId),
     [currentUserId]
@@ -130,6 +129,22 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
     }
   }
 
+  async function deleteDocument() {
+  if (!document) return;
+
+  if (!confirm("Delete this document?")) return;
+
+  await fetch(`/api/documents/${document.id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: currentUserId,
+    }),
+  });
+
+  location.reload();
+}
+
   async function shareWith(userId: string, permission: "view" | "edit") {
   if (!document) return;
 
@@ -188,6 +203,13 @@ export function DocumentEditor({ document, currentUserId, onSaved }: Props) {
               : saveState === "saved"
               ? "Saved"
               : "Saved automatically"}
+          </button>
+
+          <button
+            onClick={deleteDocument}
+            className="rounded-lg border px-3 py-2 text-sm hover:bg-gray-100"
+          >
+          Delete
           </button>
         </div>
 

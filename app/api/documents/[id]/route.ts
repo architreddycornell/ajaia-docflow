@@ -64,3 +64,47 @@ export async function PATCH(req: NextRequest, { params }: Params) {
 
   return NextResponse.json(data);
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: Params
+): Promise<Response> {
+  const { id } = await params;
+
+  const body = await req.json();
+  const userId = body.userId;
+
+  const { data: doc } = await supabase
+    .from("documents")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (!doc) {
+    return NextResponse.json(
+      { error: "Document not found" },
+      { status: 404 }
+    );
+  }
+
+  if (doc.owner_id !== userId) {
+    return NextResponse.json(
+      { error: "Only owner can delete document" },
+      { status: 403 }
+    );
+  }
+
+  const { error } = await supabase
+    .from("documents")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    return NextResponse.json(
+      { error: error.message },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json({ success: true });
+}
